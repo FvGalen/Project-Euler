@@ -23,11 +23,11 @@ namespace ProjectEuler
                     {
                         answer = priemgetallen[i];
                     }
-                }
-
-                Console.WriteLine(startnumber);
-                Console.WriteLine(answer);
+                }                
             }
+            Console.WriteLine(startnumber);
+            Console.WriteLine(answer);
+            Console.ReadKey();
         }
     }
 }
