@@ -8,26 +8,18 @@ namespace ProjectEuler
         public static void Main(string[] args)
         {
 
-            int numberToCheck = 20;
+            int sumOfSquare = 0;
+            int squareOfSum = 0;
 
-            do
+            for (int i = 1; i <= 100; i++)
             {
-                var succes = true;
-                for (int i = 1; i <= 20; i++)
-                {
-                    if (numberToCheck % i != 0)
-                    {
-                        succes = false;
-                        numberToCheck++;
-                        break;
-                    }
-                }
-                if (succes)
-                    break;
+                sumOfSquare += i*i;
+                squareOfSum += i;
+            }
 
-            } while (true);
+            squareOfSum *= squareOfSum;
 
-            Console.WriteLine(numberToCheck);
+            Console.WriteLine(squareOfSum - sumOfSquare);
             Console.ReadKey();
         }
     }
