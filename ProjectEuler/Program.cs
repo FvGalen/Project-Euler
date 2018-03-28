@@ -25,8 +25,8 @@ namespace ProjectEuler
                     }
                 }                
             }
-            Console.WriteLine(startnumber);
-            Console.WriteLine(answer);
+            Console.WriteLine("Startnumber = " + startnumber);
+            Console.WriteLine("antwoord = " + answer);
             Console.ReadKey();
         }
     }
