@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 
 namespace ProjectEuler
@@ -7,23 +7,37 @@ namespace ProjectEuler
     {
         public static void Main(string[] args)
         {
-            int answer = 0;
+            long sumOfPrimes = 0;
+            long numberToCheck = 2;
+            bool primeNumber;
 
-            for (int x = 1; x < 1000; x++)
+            do
             {
-                for (int y = 1; y < 1000; y++)
-                {
-                    for (int z = 1; z < 1000; z++)
-                    {
-                        if(x+y+z == 1000 && x*x + y*y == z * z)
-                        {
-                            answer = x * y * z;
-                        }
-                    }
-                }
-            }
+                if (numberToCheck > 2000000)
+                    break;
 
-            Console.WriteLine(answer);
+                if(numberToCheck % 100000 == 0)
+                    Console.WriteLine($"sum of primes is: {sumOfPrimes} when the number to check is {numberToCheck}");
+
+                primeNumber = true;
+                for (int i = 2; i < numberToCheck; i++)
+			    {
+                    if(numberToCheck % i == 0){
+                        primeNumber = false;
+                        numberToCheck ++;
+                        break;
+                     }
+                }
+                
+                if(primeNumber){
+                    sumOfPrimes += numberToCheck;
+                    numberToCheck++;
+                }
+
+
+	        } while (true);
+
+            Console.WriteLine($"sum of primes is: {sumOfPrimes}");
             Console.ReadKey();
         }
     }
