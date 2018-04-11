@@ -8,14 +8,24 @@ namespace ProjectEuler
 {
     class MainClass
     {
+
         public static void Main(string[] args)
         {
+            long sumOfPrimes = 0;
 
-            public List<int> primeNumers = PrimeNumers.PrimeNumbers.FindPrimeNumersInRange(1, 20);
-            
+            List<int> primeNumberList = new List<int>();
 
-            Console.WriteLine(PrimeNumers[1]);
+            primeNumberList = PrimeNumbers.PrimeNumbers.FindPrimeNumersInRange(2, 2000000);
+
+            for (int i = 0; i < primeNumberList.Count ; i++)
+            {
+                sumOfPrimes += primeNumberList[i];
+            }
+
+            Console.WriteLine($"het antwoord is {sumOfPrimes}");
             Console.ReadKey();
         }
+
+
     }
 }
