@@ -39,14 +39,62 @@ namespace ProjectEuler
                 if (answer < currentAnswer)
                     answer = currentAnswer;
 
-                Console.WriteLine(currentAnswer);
+                if (i % gridWidth == gridWidth - numberAdjacentAmount)
+                {
+                    i += numberAdjacentAmount;
+                }
+            }
+
+            // check for highest vertical value
+            for (int i = 0; i < gridNumbers.Count - (gridHeight * numberAdjacentAmount); i++)
+            {
+                currentAnswer = 1;
+                for (int j = 0; j < numberAdjacentAmount; j++)
+                {
+                    currentAnswer = currentAnswer * gridNumbers[i + j*20];
+                }
+
+                if (answer < currentAnswer)
+                    answer = currentAnswer;
+            }
+
+            // check for negative diagonal value
+            for (int i = 0; i < gridNumbers.Count - (gridHeight * numberAdjacentAmount); i++)
+            {
+                currentAnswer = 1;
+                for (int j = 0; j < numberAdjacentAmount; j++)
+                {
+                    currentAnswer = currentAnswer * gridNumbers[i + j * 21];
+                }
+
+                if (answer < currentAnswer)
+                    answer = currentAnswer;
 
                 if (i % gridWidth == gridWidth - numberAdjacentAmount)
                 {
-                    i = i + numberAdjacentAmount;
+                    i += numberAdjacentAmount;
+                }
+            }
+
+            // check for positive diagonal value
+            for (int i = 3; i < gridNumbers.Count - (gridHeight * numberAdjacentAmount); i++)
+            {
+                currentAnswer = 1;
+                for (int j = 0; j < numberAdjacentAmount; j++)
+                {
+                    currentAnswer = currentAnswer * gridNumbers[i + j * 19];
                 }
 
+                if (answer < currentAnswer)
+                    answer = currentAnswer;
+
+                if (i % gridWidth <=  numberAdjacentAmount)
+                {
+                    i += numberAdjacentAmount;
+                }
             }
+
+
             Console.WriteLine($"The highest answer is {answer}");
             Console.ReadKey();
         }
