@@ -11,29 +11,26 @@ namespace ProjectEuler
         public static void Main(string[] args)
         {
             long answer = 0;
-            int totalIncrements = 0;
-            int nextIncrement = 1;
-            bool answerFound = false;
 
-            while (!answerFound)
+            for (int i = 1; true; i++)
             {
+                int triangle = i * (i + 1) / 2;
 
-                answer = answer + nextIncrement;
-                nextIncrement++;
-                totalIncrements = 0;
-
-                for (int i = 1; i < answer ; i++)
+                int factors = 0;
+                for (int k = 1; k <= Math.Sqrt(triangle); k++)
                 {
-                    if (answer % i == 0)
-                        totalIncrements++;
-
-                    if (totalIncrements == 500)
-                    {
-                        answerFound = true;
-                    }
+                    if (triangle % k == 0)
+                        factors++;
                 }
 
-                Console.WriteLine($"current number is {answer}, current amount of increments is {totalIncrements}");
+                factors *= 2;
+
+
+                if (factors > 499)
+                {
+                    answer = triangle;
+                    break;
+                }
             }
 
             Console.WriteLine($"The answer is {answer}");
