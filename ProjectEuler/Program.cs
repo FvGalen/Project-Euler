@@ -11,16 +11,19 @@ namespace ProjectEuler
     {
         public static void Main(string[] args)
         {
-            int gridSize = 20;
-            BigInteger possibilities = 1;
+            int answer = 0;
+            BigInteger number = BigInteger.Pow(2,1000);
+            string numberToString = number.ToString();
 
-            for (int i = 0; i < gridSize; i++)
+            var arr = numberToString.ToCharArray();
+
+            for (int i = 0; i < arr.Length; i++)
             {
-                possibilities *= (2 * gridSize) - i;
-                possibilities /= i + 1;
+                
+                answer += int.Parse(arr[i].ToString());
             }
 
-            Console.WriteLine($"The number of possibilities is {possibilities}");
+            Console.WriteLine($"{answer}");
             Console.ReadKey();
         }
     }
