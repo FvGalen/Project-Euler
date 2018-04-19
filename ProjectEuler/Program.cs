@@ -11,40 +11,17 @@ namespace ProjectEuler
     {
         public static void Main(string[] args)
         {
-            long answer = 0;
-            long chainsAnswer = 0;
-            long currentNumber;
-            long currentChain;
+            int gridSize = 20;
+            BigInteger possibilities = 1;
 
-            for (int i = 1; i < 1000000; i++)
+            for (int i = 0; i < gridSize; i++)
             {
-                currentNumber = i;
-                currentChain = 0;
-
-                while (currentNumber != 1)
-                {
-                    if (currentNumber % 2 == 0)
-                    {
-                        currentNumber /= 2;
-                    }
-                    else
-                    {
-                        currentNumber = currentNumber * 3 + 1;
-                    }
-
-                    currentChain++;
-                }
-
-                if (chainsAnswer <= currentChain)
-                {
-                    answer = i;
-                    chainsAnswer = currentChain;
-                }
-
+                possibilities *= (2 * gridSize) - i;
+                possibilities /= i + 1;
             }
 
-            Console.WriteLine($"The answer is {answer} with {chainsAnswer}");
+            Console.WriteLine($"The number of possibilities is {possibilities}");
             Console.ReadKey();
         }
     }
-}
+}   
