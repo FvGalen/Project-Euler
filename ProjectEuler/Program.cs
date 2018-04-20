@@ -13,12 +13,46 @@ namespace ProjectEuler
     {
         public static void Main(string[] args)
         {
-            int offset = 'A' - 1;
-            WebClient wc = new WebClient();
-            string raw = wc.DownloadString("https://projecteuler.net/project/resources/p022_names.txt");
-            string[] inputstring = raw.Split(',').Select(s=>s.Trim('"')).OrderBy(s=>s).ToArray();
+            int answer = 0;
+            List<int> abundandNumberList = new List<int>();
+            bool[] booleanList = new bool[28122];
 
-            int answer = inputstring.Select(name => name.Sum(c => c - offset)).Select((valueOfName, i) => valueOfName * (i + 1)).Sum();
+            for (int i = 1; i < 28123; i++)
+            {
+                int tempAnswer = 0;
+                for (int j = 1; j < i; j++)
+                {
+                    if (i % j == 0)
+                    {
+                        tempAnswer += j;
+                    }
+                }
+
+                if (tempAnswer > i)
+                {
+                    abundandNumberList.Add(i);
+//                  Console.WriteLine($"{i} is an abundand number");
+                }
+            }
+
+            for (int i = 0; i < abundandNumberList.Count; i++)
+            {
+                for (int j = i; j < abundandNumberList.Count; j++)
+                {
+//                  Console.WriteLine($"{abundandNumberList[i]} + {abundandNumberList[j]} = {abundandNumberList[i] + abundandNumberList[j]}");
+                    if(abundandNumberList[i] + abundandNumberList[j] < 28123)
+                        booleanList[(abundandNumberList[i] + abundandNumberList[j])-1] = true;
+                }
+            }
+
+            for (int i = 0; i < booleanList.Length; i++)
+            {
+                if (booleanList[i] == false)
+                {
+                    Console.WriteLine($"{i+1} isn't a sum of 2 abundand numbers");
+                    answer += i + 1;
+                }
+            }
 
             Console.WriteLine($"answer is {answer}");
             Console.ReadKey();
