@@ -12,34 +12,40 @@ namespace ProjectEuler
     {
         public static void Main(string[] args)
         {
+            int answer = 0;
+            int numbersToCheck = 10000;
+
             Stopwatch stopwatch = new Stopwatch();
 
-            int answer = 0;
-            int startNumber = 100;
-            BigInteger number = 1;
-            string stringNumber;
+            for (int a = 0; a < numbersToCheck; a++)
+            {
+                int B = SumOfFactors(a);
+
+                if(SumOfFactors(B) == a && a != B) {
+                    answer += a;
+                }
+            }            
             
-
-            for (int i = startNumber; i > 0; i--)
-            {
-                number *= i;
-            }
-
-            stringNumber = number.ToString();
-
-            var arr = stringNumber.ToCharArray();
-
-            for (int i = 0; i < arr.Length; i++)
-            {
-                answer += int.Parse(arr[i].ToString());
-            }
-
-
             stopwatch.Stop();
 
-            Console.WriteLine($"the answer is {answer}, it took {stopwatch.ElapsedTicks} ticks");
+            Console.WriteLine($"answer is {answer}");
             Console.ReadKey();
+
         }
+
+        private static int SumOfFactors (int _int)
+        {
+            int sum = 0;
+            for (int i = 1; i < _int; i++)
+            {
+                if(_int % i == 0)
+                {
+                    sum += i;
+                }
+            }
+            return sum;
+        }
+
     }
 }
 
