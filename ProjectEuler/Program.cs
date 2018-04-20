@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
@@ -12,38 +13,16 @@ namespace ProjectEuler
     {
         public static void Main(string[] args)
         {
-            int answer = 0;
-            int numbersToCheck = 10000;
+            int offset = 'A' - 1;
+            WebClient wc = new WebClient();
+            string raw = wc.DownloadString("https://projecteuler.net/project/resources/p022_names.txt");
+            string[] inputstring = raw.Split(',').Select(s=>s.Trim('"')).OrderBy(s=>s).ToArray();
 
-            Stopwatch stopwatch = new Stopwatch();
-
-            for (int a = 0; a < numbersToCheck; a++)
-            {
-                int B = SumOfFactors(a);
-
-                if(SumOfFactors(B) == a && a != B) {
-                    answer += a;
-                }
-            }            
-            
-            stopwatch.Stop();
+            int answer = inputstring.Select(name => name.Sum(c => c - offset)).Select((valueOfName, i) => valueOfName * (i + 1)).Sum();
 
             Console.WriteLine($"answer is {answer}");
             Console.ReadKey();
 
-        }
-
-        private static int SumOfFactors (int _int)
-        {
-            int sum = 0;
-            for (int i = 1; i < _int; i++)
-            {
-                if(_int % i == 0)
-                {
-                    sum += i;
-                }
-            }
-            return sum;
         }
 
     }
